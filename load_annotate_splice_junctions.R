@@ -1,8 +1,9 @@
 library(data.table)
 library(GenomicFeatures)
 
-source('./config.R')
 source('./utils.R')
+source('./config.R')
+
 
 sj.files <- dir('data/splice_junctions/', full.names = TRUE)
 

@@ -8,10 +8,12 @@ hsa.txdb <- makeTxDbFromGRanges(hsa.gtf.gr)
 hsa.genes.gr <-
   keepStandardChromosomes(genes(hsa.txdb),
                           pruning.mode = 'coarse')
-hsa.rep.gr <-
+
+hsa.prep.gr <- 
   keepStandardChromosomes(
-    readRDS("./data/annotation/hg38.repeats.classes.flipped.rds"),
+    readRDS('./data/annotation/hg38.repeats.classes.rds'),
     pruning.mode = 'coarse')
+hsa.rep.gr <- flipRepeatMetadata(hsa.prep.gr)
 
 hsa.peaks.reduced.gr <-
   readRDS('./data/annotation/human_SAFB_SAFB2_SLTM_peaks_reduced_gr.rds')

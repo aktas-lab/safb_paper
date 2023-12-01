@@ -252,3 +252,19 @@ dt2gr <- function(DT) {
 
   return(gr)
 }
+
+flipRepeatMetadata <- function(rep.gr) {
+  library(GenomicRanges)
+  
+  # flip rep strand and add the 'anti' prefix
+  rep.flip.gr <- rep.gr
+  if (sum(strand(rep.gr) == '*') == 0) {
+    strand(rep.flip.gr) <- ifelse(as.character(strand(rep.flip.gr)) == '+', '-', '+')
+  }
+  rep.flip.gr$gene_id <- paste0('anti', rep.flip.gr$gene_id)
+  rep.flip.gr$transcript_id <- paste0('anti', rep.flip.gr$transcript_id)
+  rep.flip.gr$class <- paste0('anti', rep.flip.gr$class)
+  rep.flip.gr$family <- paste0('anti', rep.flip.gr$family)
+  
+  c(rep.gr, rep.flip.gr)
+}
