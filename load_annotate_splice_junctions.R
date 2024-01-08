@@ -19,3 +19,5 @@ sj.annot.dt <-
                           ensg2symbol = hsa.ensg2symbol,
                           ensg2type   = hsa.ensg2type,
                           peaks.gr    = hsa.peaks.reduced.gr)
+system('mkdir output')
+write.table(sj.annot.dt, 'output/safb_annotated_junctions.txt', quote = F, row.names = F, sep = '\t')
